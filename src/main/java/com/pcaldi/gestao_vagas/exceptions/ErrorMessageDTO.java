@@ -1,4 +1,4 @@
-package com.pcaldi.gestao_vagas.modules.exceptions;
+package com.pcaldi.gestao_vagas.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
