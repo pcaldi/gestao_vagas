@@ -1,4 +1,4 @@
-package com.pcaldi.gestao_vagas.modules.compony.entities;
+package com.pcaldi.gestao_vagas.modules.company.entities;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

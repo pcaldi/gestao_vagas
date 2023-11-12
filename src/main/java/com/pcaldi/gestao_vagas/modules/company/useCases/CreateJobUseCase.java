@@ -1,10 +1,10 @@
-package com.pcaldi.gestao_vagas.modules.compony.useCases;
+package com.pcaldi.gestao_vagas.modules.company.useCases;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pcaldi.gestao_vagas.modules.compony.entities.JobEntity;
-import com.pcaldi.gestao_vagas.modules.compony.repositories.JobRepository;
+import com.pcaldi.gestao_vagas.modules.company.entities.JobEntity;
+import com.pcaldi.gestao_vagas.modules.company.repositories.JobRepository;
 
 @Service
 public class CreateJobUseCase {

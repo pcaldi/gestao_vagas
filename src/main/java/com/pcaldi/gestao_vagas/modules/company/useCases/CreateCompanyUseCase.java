@@ -1,11 +1,11 @@
-package com.pcaldi.gestao_vagas.modules.compony.useCases;
+package com.pcaldi.gestao_vagas.modules.company.useCases;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pcaldi.gestao_vagas.exceptions.UserFoundExcption;
-import com.pcaldi.gestao_vagas.modules.compony.entities.CompanyEntity;
-import com.pcaldi.gestao_vagas.modules.compony.repositories.CompanyRepository;
+import com.pcaldi.gestao_vagas.modules.company.entities.CompanyEntity;
+import com.pcaldi.gestao_vagas.modules.company.repositories.CompanyRepository;
 
 @Service
 public class CreateCompanyUseCase {
