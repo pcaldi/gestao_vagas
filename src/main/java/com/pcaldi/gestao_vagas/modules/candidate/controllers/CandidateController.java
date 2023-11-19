@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pcaldi.gestao_vagas.modules.candidate.CandidateEntity;
+import com.pcaldi.gestao_vagas.modules.candidate.dto.ProfileCandidateResponseDTO;
 import com.pcaldi.gestao_vagas.modules.candidate.useCase.CreateCandidateUseCase;
 import com.pcaldi.gestao_vagas.modules.candidate.useCase.ListAllJobsByFilterUseCase;
 import com.pcaldi.gestao_vagas.modules.candidate.useCase.ProfileCandidateUseCase;
@@ -56,6 +57,16 @@ public class CandidateController {
     }
 
     @GetMapping("/")
+    @Tag(name = "Candidato", description = "Informações do candidato")
+    @Operation(summary = "Perfil do candidato", description = "Responsável por buscar informações do perfil do candidato")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(schema = @Schema(implementation = ProfileCandidateResponseDTO.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "User not found")
+    })
+
+    @SecurityRequirement(name = "jwt_auth")
     public ResponseEntity<Object> get(HttpServletRequest request) {
 
         var idCandidate = request.getAttribute("candidate_id");
