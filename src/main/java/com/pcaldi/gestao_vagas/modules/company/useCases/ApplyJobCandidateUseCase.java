@@ -17,6 +17,8 @@ public class ApplyJobCandidateUseCase {
     @Autowired
     private JobRepository jobRepository;
 
+    // ID do candidato
+    // ID da vaga
     public void execute(UUID idCandidate, UUID idJob) {
 
         // Validar se o candidato existe
