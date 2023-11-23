@@ -3,6 +3,7 @@ package com.pcaldi.gestao_vagas.modules.company.useCases;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.pcaldi.gestao_vagas.exceptions.JobNotFoundException;
 import com.pcaldi.gestao_vagas.exceptions.UserNotFoundException;
@@ -11,6 +12,7 @@ import com.pcaldi.gestao_vagas.modules.candidate.entity.ApplyJobEntity;
 import com.pcaldi.gestao_vagas.modules.candidate.repository.ApplyJobRepository;
 import com.pcaldi.gestao_vagas.modules.company.repositories.JobRepository;
 
+@Service
 public class ApplyJobCandidateUseCase {
 
     @Autowired

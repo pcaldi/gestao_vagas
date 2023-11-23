@@ -20,6 +20,7 @@ import com.pcaldi.gestao_vagas.modules.candidate.useCase.CreateCandidateUseCase;
 import com.pcaldi.gestao_vagas.modules.candidate.useCase.ListAllJobsByFilterUseCase;
 import com.pcaldi.gestao_vagas.modules.candidate.useCase.ProfileCandidateUseCase;
 import com.pcaldi.gestao_vagas.modules.company.entities.JobEntity;
+import com.pcaldi.gestao_vagas.modules.company.useCases.ApplyJobCandidateUseCase;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -45,6 +46,9 @@ public class CandidateController {
 
     @Autowired
     private ListAllJobsByFilterUseCase listAllJobsByFilterUseCase;
+
+    @Autowired
+    private ApplyJobCandidateUseCase applyJobCandidateUseCase;
 
     @PostMapping("/")
     @PreAuthorize("hasRole('CANDIDATE')")
@@ -99,4 +103,19 @@ public class CandidateController {
         return this.listAllJobsByFilterUseCase.execute(filter);
     }
 
+    @PostMapping("/job/apply")
+    @PreAuthorize("hasRole('CANDIDATE')")
+    @Operation(summary = "Inscrição do candidato para uma vaga", description = "Essa função é responsável por realizar a inscrição do candidato em uma vaga.")
+    @SecurityRequirement(name = "jwt_auth")
+    public ResponseEntity<Object> applyJob(HttpServletRequest request, @RequestBody UUID idJob) {
+
+        var idCandidate = request.getAttribute("candidate_id");
+
+        try {
+            var result = this.applyJobCandidateUseCase.execute(UUID.fromString(idCandidate.toString()), idJob);
+            return ResponseEntity.ok().body(result);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
