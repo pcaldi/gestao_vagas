@@ -10,8 +10,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TestUtils {
-
-    public static String ObjectToJSON(Object obj) {
+    public static String objectToJson(Object obj) {
         try {
             final ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.writeValueAsString(obj);
@@ -21,19 +20,15 @@ public class TestUtils {
     }
 
     public static String generateToken(UUID idCompany, String secret) {
-        // Se forem iguais -> Gerar o token
         Algorithm algorithm = Algorithm.HMAC256(secret);
 
         var expiresIn = Instant.now().plus(Duration.ofHours(2));
 
-        var token = JWT.create()
-                .withIssuer("javagas")
+        var token = JWT.create().withIssuer("javagas")
                 .withSubject(idCompany.toString())
-                .withClaim("roles", Arrays.asList("CANDIDATE"))
                 .withExpiresAt(expiresIn)
+                .withClaim("roles", Arrays.asList("COMPANY"))
                 .sign(algorithm);
-
         return token;
-
     }
 }
