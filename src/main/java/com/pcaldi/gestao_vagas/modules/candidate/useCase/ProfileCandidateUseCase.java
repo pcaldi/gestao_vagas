@@ -3,9 +3,9 @@ package com.pcaldi.gestao_vagas.modules.candidate.useCase;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.pcaldi.gestao_vagas.exceptions.UserNotFoundException;
 import com.pcaldi.gestao_vagas.modules.candidate.CandidateRepository;
 import com.pcaldi.gestao_vagas.modules.candidate.dto.ProfileCandidateResponseDTO;
 
@@ -18,7 +18,7 @@ public class ProfileCandidateUseCase {
     public ProfileCandidateResponseDTO execute(UUID IdCandidate) {
         var candidate = this.candidateRepository.findById(IdCandidate)
                 .orElseThrow(() -> {
-                    throw new UsernameNotFoundException("User not Found");
+                    throw new UserNotFoundException();
                 });
 
         var candidateDTO = ProfileCandidateResponseDTO
